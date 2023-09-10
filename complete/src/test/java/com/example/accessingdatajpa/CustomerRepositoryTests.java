@@ -42,4 +42,14 @@ public class CustomerRepositoryTests {
 
 		assertThat(findByLastName).extracting(Customer::getLastName).containsOnly(customer.getLastName());
 	}
+
+	@Test
+	public void testFindByFirstName(){
+		Customer customer = new Customer("said", "olano");
+		entityManager.persist(customer);
+		System.out.println("customer: " + customer.getFirstName()+", "+ customer.getLastName());
+		List<Customer> item = customers.findByFirstName(customer.getFirstName());
+
+		assertThat(item).extracting(Customer::getFirstName).containsOnly(customer.getFirstName());
+	}
 }
